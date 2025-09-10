@@ -1,0 +1,20 @@
+body {
+  background-color: rgba(15, 15, 35, 1.0);
+  color: rgba(8, 169, 5, 1.0); /* classic green terminal text */
+  font-family: "Advent Pro", monospace;
+  margin: 0;
+  padding: 1rem;
+}
+
+a {
+  color: #00ffff; /* cyan links */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+header, footer {
+  margin-bottom: 1rem;
+}
