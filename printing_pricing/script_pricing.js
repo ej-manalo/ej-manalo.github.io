@@ -36,7 +36,7 @@ function updatePrice(pricingData) {
   );
 
   const priceDiv = document.getElementById("price");
-  priceDiv.textContent = match ? `Price: ₱${match["price(Php)"]}` : "No matching price found.";
+  priceDiv.textContent = match ? `Price: Php ${match["price(Php)"]}` : "No matching price found.";
 }
 
 loadPricingData().then(pricingData => {
