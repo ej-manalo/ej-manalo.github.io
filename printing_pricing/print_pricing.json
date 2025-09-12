@@ -1,0 +1,146 @@
+[
+ {
+  "height(in)": 3,
+  "thickness(mm)": 10,
+  "location(indoor\/outdoor)": "indoor",
+  "price(Php)": 80
+ },
+ {
+  "height(in)": 3,
+  "thickness(mm)": 8,
+  "location(indoor\/outdoor)": "indoor",
+  "price(Php)": 65
+ },
+ {
+  "height(in)": 3,
+  "thickness(mm)": 6,
+  "location(indoor\/outdoor)": "indoor",
+  "price(Php)": 50
+ },
+ {
+  "height(in)": 3,
+  "thickness(mm)": 10,
+  "location(indoor\/outdoor)": "outdoor",
+  "price(Php)": 90
+ },
+ {
+  "height(in)": 3,
+  "thickness(mm)": 8,
+  "location(indoor\/outdoor)": "outdoor",
+  "price(Php)": 75
+ },
+ {
+  "height(in)": 3,
+  "thickness(mm)": 6,
+  "location(indoor\/outdoor)": "outdoor",
+  "price(Php)": 60
+ },
+ {
+  "height(in)": 6,
+  "thickness(mm)": 12,
+  "location(indoor\/outdoor)": "indoor",
+  "price(Php)": 190
+ },
+ {
+  "height(in)": 6,
+  "thickness(mm)": 9,
+  "location(indoor\/outdoor)": "indoor",
+  "price(Php)": 170
+ },
+ {
+  "height(in)": 6,
+  "thickness(mm)": 6,
+  "location(indoor\/outdoor)": "indoor",
+  "price(Php)": 150
+ },
+ {
+  "height(in)": 6,
+  "thickness(mm)": 12,
+  "location(indoor\/outdoor)": "outdoor",
+  "price(Php)": 210
+ },
+ {
+  "height(in)": 6,
+  "thickness(mm)": 9,
+  "location(indoor\/outdoor)": "outdoor",
+  "price(Php)": 190
+ },
+ {
+  "height(in)": 6,
+  "thickness(mm)": 6,
+  "location(indoor\/outdoor)": "outdoor",
+  "price(Php)": 170
+ },
+ {
+  "height(in)": 9,
+  "thickness(mm)": 12,
+  "location(indoor\/outdoor)": "indoor",
+  "price(Php)": 320
+ },
+ {
+  "height(in)": 9,
+  "thickness(mm)": 10,
+  "location(indoor\/outdoor)": "indoor",
+  "price(Php)": 300
+ },
+ {
+  "height(in)": 9,
+  "thickness(mm)": 6,
+  "location(indoor\/outdoor)": "indoor",
+  "price(Php)": 280
+ },
+ {
+  "height(in)": 9,
+  "thickness(mm)": 12,
+  "location(indoor\/outdoor)": "outdoor",
+  "price(Php)": 350
+ },
+ {
+  "height(in)": 9,
+  "thickness(mm)": 10,
+  "location(indoor\/outdoor)": "outdoor",
+  "price(Php)": 310
+ },
+ {
+  "height(in)": 9,
+  "thickness(mm)": 6,
+  "location(indoor\/outdoor)": "outdoor",
+  "price(Php)": 280
+ },
+ {
+  "height(in)": 12,
+  "thickness(mm)": 12,
+  "location(indoor\/outdoor)": "indoor",
+  "price(Php)": 485
+ },
+ {
+  "height(in)": 12,
+  "thickness(mm)": 10,
+  "location(indoor\/outdoor)": "indoor",
+  "price(Php)": 465
+ },
+ {
+  "height(in)": 12,
+  "thickness(mm)": 6,
+  "location(indoor\/outdoor)": "indoor",
+  "price(Php)": 445
+ },
+ {
+  "height(in)": 12,
+  "thickness(mm)": 12,
+  "location(indoor\/outdoor)": "outdoor",
+  "price(Php)": 520
+ },
+ {
+  "height(in)": 12,
+  "thickness(mm)": 10,
+  "location(indoor\/outdoor)": "outdoor",
+  "price(Php)": 500
+ },
+ {
+  "height(in)": 12,
+  "thickness(mm)": 6,
+  "location(indoor\/outdoor)": "outdoor",
+  "price(Php)": 480
+ }
+]
