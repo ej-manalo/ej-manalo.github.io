@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>3D Printing Pricing Calculator</title>
+<link rel="stylesheet" href="print_pricing.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>3D Printing Shop Pricing Calculator</h1>
+
+    <table id="priceTable">
+        <thead>
+            <tr>
+                <th>Word</th>
+                <th>Height (inches)</th>
+                <th>Thickness (mm)</th>
+                <th>Location</th>
+                <th>Letters in Word</th>
+                <th>Price per Letter (Php)</th>
+                <th>Total (Php)</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td><input type="text" class="word" title="White spaces are not counted."></td>
+
+                <td>
+                    <select class="height">
+                        <option value="">Select</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                    </select>
+                </td>
+
+                <td>
+                    <select class="thickness">
+                        <option value="">Select</option>
+                        <option>12</option>
+                        <option>9</option>
+                        <option>6</option>
+                        <option>3</option>
+                    </select>
+                </td>
+
+                <td>
+                    <select class="location">
+                        <option value="indoor">Indoor</option>
+                        <option value="outdoor">Outdoor</option>
+                    </select>
+                </td>
+
+                <td class="letters">0</td>
+                <td class="price-per-letter">0</td>
+                <td class="total total-price">0</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button class="add-row" onclick="addRow()">Add Row</button>
+</div>
+
+
+<div class="summary-panel">
+    <h2>Pricing Summary</h2>
+    <table>
+        <tr>
+            <td>Subtotal</td>
+            <td id="summary-subtotal">0</td>
+        </tr>
+        <tr>
+            <td>Discount 2% First time Buyer</td>
+            <td id="summary-discount">0</td>
+        </tr>
+        <tr>
+            <td>Total</td>
+            <td id="summary-total">0</td>
+        </tr>
+        <tr>
+            <td>40% Confirmation DP</td>
+            <td id="summary-dp">0</td>
+        </tr>
+        <tr>
+            <td>Remaining Balance</td>
+            <td id="summary-balance">0</td>
+        </tr>
+    </table>
+</div>
+
+<div class="upload-panel">
+    <h2>Upload Preview</h2>
+    <div class="drop-zone" id="dropZone">
+        <p class="drop-text">Drag & drop an image here, or click to select</p>
+        <input type="file" id="fileInput" accept="image/*" />
+        <img id="previewImage" src="" alt="Preview" />
+    </div>
+</div>
+
+
+<script src="print_pricing.js"></script>
+</body>
+</html>

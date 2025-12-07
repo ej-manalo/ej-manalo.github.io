@@ -1,0 +1,29 @@
+body {
+  background-color: rgba(15, 15, 35, 1.0);
+  color: rgba(8, 169, 5, 1.0); /* classic green terminal text */
+  font-family: "Advent Pro", monospace;
+  margin: 40px;
+  padding: 1rem;
+  font-size: 25px; /* increase overall font size */
+}
+
+a {
+  color: #00ffff; /* cyan links */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+header, footer {
+  margin-bottom: 1rem;
+}
+
+select {
+  padding: 8px;
+  background-color: black;   /* dropdown background */
+  color: rgb(62, 238, 59);               /* text color */
+  border: 1px solid rgba(153, 189, 153,0.5);    /* border color */
+  font-size: 17px;
+}

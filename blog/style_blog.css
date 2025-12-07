@@ -1,0 +1,57 @@
+body {
+  background-color: rgba(15, 15, 35, 1.0);
+  color: rgba(8, 169, 5, 1.0);
+  font-family: "Courier New", monospace;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* full height */
+}
+
+header {
+  padding: 1rem;
+  background-color: rgba(20, 20, 40, 1.0);
+  border-bottom: 1px solid #00ff00;
+}
+
+main {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto; /* scroll if too many entries */
+}
+
+.entry {
+  margin-bottom: 1rem;
+  border-left: 2px solid #00ff00;
+  padding-left: 0.5rem;
+}
+
+footer {
+  display: flex;
+  padding: 0.5rem;
+  border-top: 1px solid #00ff00;
+  background-color: rgba(20, 20, 40, 1.0);
+}
+
+#entryInput {
+  flex: 1;
+  padding: 0.5rem;
+  font-family: inherit;
+  font-size: 1rem;
+  border: none;
+  background: black;
+  color: #00ff00;
+}
+
+#sendBtn {
+  padding: 0.5rem 1rem;
+  margin-left: 0.5rem;
+  background: #00ff00;
+  color: black;
+  border: none;
+  cursor: pointer;
+}
+
+#sendBtn:hover {
+  background: #00cc00;
+}

@@ -1,0 +1,160 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #1d4ed8;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+}
+
+th {
+    background: #bfdbfe;
+    padding: 12px;
+    text-align: left;
+    font-size: 15px;
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.add-row {
+    margin-top: 20px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.add-row:hover {
+    background: #1e40af;
+}
+
+.total {
+    font-weight: bold;
+    color: #1d4ed8;
+}
+
+
+.summary-panel {
+    margin-top: 30px;
+    max-width: 500px;
+    background: #e0f2fe;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.summary-panel h2 {
+    color: #1e40af;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.summary-panel table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+}
+
+.summary-panel td {
+    padding: 8px 10px;
+}
+
+.summary-panel td:last-child {
+    font-weight: bold;
+    text-align: right;
+}
+
+.upload-panel {
+    margin-top: 30px;
+    max-width: 500px;
+    background: #fef3c7;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.upload-panel h2 {
+    color: #b45309;
+    margin-bottom: 15px;
+}
+
+.drop-zone {
+    position: relative;
+    border: 2px dashed #f59e0b;
+    padding: 30px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.3s, border-color 0.3s;
+    overflow: hidden;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.drop-zone:hover {
+    background: #fefce8;
+    border-color: #d97706;
+}
+
+.drop-zone input[type="file"] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.drop-zone p.drop-text {
+    position: absolute;
+    z-index: 1;
+    text-align: center;
+    color: #b45309;
+    font-weight: bold;
+}
+
+.drop-zone img#previewImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* or cover */
+    border-radius: 12px;
+    z-index: 0;
+    display: none;
+}
