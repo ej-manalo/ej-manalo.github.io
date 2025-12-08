@@ -173,3 +173,46 @@ input, select {
     }
 }
 
+/* Delivery Panel */
+.delivery-panel {
+    background: #fcf2cb; /*  #fef3c7 warm light yellow */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    color: #000000; /* dark golden brown text */
+    flex: 1 1 48%;
+}   
+
+.delivery-panel h2 {
+    margin-bottom: 15px;
+    color: #000000;
+}
+
+/* Delivery details table */
+.delivery-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.delivery-table td {
+    padding: 6px 4px;
+    vertical-align: top;
+}
+
+/* Second row layout */
+.second-row {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: nowrap;
+}
+
+/* Mobile fallback */
+@media (max-width: 600px) {
+    .second-row {
+        flex-wrap: wrap;
+    }
+    .second-row > div {
+        flex: 1 1 100%;
+    }
+}

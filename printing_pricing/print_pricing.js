@@ -55,11 +55,12 @@ function updateSummary(){
     const dp = Math.round(totalAfterDiscount*0.4);
     const remaining = totalAfterDiscount-dp;
 
-    document.getElementById("summary-subtotal").textContent=subtotal;
-    document.getElementById("summary-discount").textContent=discount;
-    document.getElementById("summary-total").textContent=totalAfterDiscount;
-    document.getElementById("summary-dp").textContent=dp;
-    document.getElementById("summary-balance").textContent=remaining;
+    document.getElementById("summary-subtotal").textContent="₱ "+subtotal;
+    document.getElementById("summary-adhesive").textContent="₱ 0";
+    document.getElementById("summary-discount").textContent="₱ "+discount;
+    document.getElementById("summary-total").textContent="₱ "+totalAfterDiscount;
+    document.getElementById("summary-dp").textContent="₱ "+dp;
+    document.getElementById("summary-balance").textContent="₱ "+remaining;
 }
 
 // --- Add new row ---
