@@ -1,113 +1,132 @@
-// --- Pricing Catalog ---
-const priceCatalog = {
-    2:{12:{indoor:75,outdoor:90},9:{indoor:60,outdoor:75},6:{indoor:45,outdoor:60},3:{indoor:30,outdoor:45}},
-    3:{12:{indoor:100,outdoor:120},9:{indoor:80,outdoor:100},6:{indoor:60,outdoor:80},3:{indoor:40,outdoor:40}},
-    4:{12:{indoor:140,outdoor:165},9:{indoor:115,outdoor:140},6:{indoor:90,outdoor:115},3:{indoor:65,outdoor:90}},
-    5:{12:{indoor:185,outdoor:215},9:{indoor:155,outdoor:185},6:{indoor:125,outdoor:155},3:{indoor:95,outdoor:125}},
-    6:{12:{indoor:235,outdoor:270},9:{indoor:200,outdoor:235},6:{indoor:165,outdoor:200},3:{indoor:130,outdoor:165}},
-    7:{12:{indoor:290,outdoor:330},9:{indoor:250,outdoor:290},6:{indoor:210,outdoor:250},3:{indoor:170,outdoor:210}},
-    8:{12:{indoor:350,outdoor:395},9:{indoor:305,outdoor:350},6:{indoor:260,outdoor:305},3:{indoor:215,outdoor:260}},
-    9:{12:{indoor:415,outdoor:465},9:{indoor:365,outdoor:415},6:{indoor:315,outdoor:365},3:{indoor:265,outdoor:315}},
-    10:{12:{indoor:485,outdoor:540},9:{indoor:430,outdoor:485},6:{indoor:375,outdoor:430},3:{indoor:320,outdoor:375}},
-    11:{12:{indoor:560,outdoor:620},9:{indoor:500,outdoor:560},6:{indoor:440,outdoor:500},3:{indoor:380,outdoor:440}},
-    12:{12:{indoor:640,outdoor:705},9:{indoor:575,outdoor:640},6:{indoor:510,outdoor:575},3:{indoor:445,outdoor:510}}
+
+
+/* ================= item order js ================= */
+const addItemBtn = document.getElementById('addItemBtn');
+const modalOverlay = document.getElementById('modalOverlay');
+const cancelBtn = document.getElementById('cancelBtn');
+const confirmAddBtn = document.getElementById('confirmAddBtn');
+const deleteBtn = document.getElementById('deleteBtn');
+const itemTableBody = document.getElementById('itemTableBody');
+
+const itemName = document.getElementById('itemName');
+const itemHeight = document.getElementById('itemHeight');
+const itemThickness = document.getElementById('itemThickness');
+const itemLocation = document.getElementById('itemLocation');
+const itemPrice = document.getElementById('itemPrice');
+
+let editingRow = null;
+
+addItemBtn.onclick = () => {
+  editingRow = null;
+  modalOverlay.style.display = 'flex';
+  itemName.value = '';
+  itemHeight.value = '';
+  itemThickness.value = '';
+  itemLocation.value = '';
+  itemPrice.value = '';
+  confirmAddBtn.textContent = 'Add';
+  deleteBtn.style.display = 'none';
+  modalOverlay.style.display = 'flex';
+  document.body.classList.add('modal-open');
+  calcInfo.style.display = 'none';  // <-- hide calculated info
+
+
 };
 
-// --- Lookup price ---
-function lookupPrice(height, thickness, location) {
-    if(!height||!thickness||!location) return 0;
-    const h=priceCatalog[height];
-    if(!h) return 0;
-    const t=h[thickness];
-    if(!t) return 0;
-    return t[location]||0;
-}
+cancelBtn.onclick = () => {
+  modalOverlay.style.display = 'none';
+  document.body.classList.remove('modal-open');
+  
+  // Hide calculated info
+  calcInfo.style.display = 'none';  
 
-// --- Update single row ---
-function updateRow(row){
-    const word = row.querySelector(".word").value;
-    const height = row.querySelector(".height").value;
-    const thickness = row.querySelector(".thickness").value;
-    const location = row.querySelector(".location").value;
+};
 
-    // Count all characters except whitespace
-    const letters = word.replace(/\s+/g,'').length;
+confirmAddBtn.onclick = () => {
+  // if (!itemName.value || !itemHeight.value || !itemThickness.value || !itemLocation.value || !itemPrice.value) {
+  //   alert('Please fill in all fields');
+  //   return;
+  // }
 
-    const pricePerLetter = lookupPrice(height, thickness, location);
-    const total = letters * pricePerLetter;
-
-    row.querySelector(".letters").textContent = letters;
-    row.querySelector(".price-per-letter").textContent = pricePerLetter;
-    row.querySelector(".total-price").textContent = total;
-
+  if (editingRow) {
+    editingRow.cells[0].textContent = itemName.value;
+    editingRow.cells[1].textContent = itemHeight.value;
+    editingRow.cells[2].textContent = itemThickness.value;
+    editingRow.cells[3].textContent = itemLocation.value;
+    editingRow.cells[4].textContent = `₱${Number(itemPrice.value).toLocaleString()}`;
+    editingRow.cells[4].classList.add('row-price');
     updateSummary();
+  } else {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${itemName.value}</td>
+      <td>${itemHeight.value}</td>
+      <td>${itemThickness.value}</td>
+      <td>${itemLocation.value}</td>
+      <td class="row-price">₱${Number(itemPrice.value).toLocaleString()}</td>
+    `;
+    row.onclick = () => openEdit(row);
+    itemTableBody.appendChild(row);
+    updateSummary();
+  }
+
+  modalOverlay.style.display = 'none';
+  document.body.classList.remove('modal-open');
+  calcInfo.style.display = 'none';
+};
+
+deleteBtn.onclick = () => {
+  if (editingRow && confirm('Are you sure you want to delete this item?')) {
+    editingRow.remove();
+    editingRow = null;
+    modalOverlay.style.display = 'none';
+    updateSummary();
+  }
+};
+
+function openEdit(row) {
+  editingRow = row;
+  modalOverlay.style.display = 'flex';
+
+  itemName.value = row.cells[0].textContent;
+  itemHeight.value = row.cells[1].textContent;
+  itemThickness.value = row.cells[2].textContent;
+  itemLocation.value = row.cells[3].textContent;
+  itemPrice.value = row.cells[4].textContent.replace('₱', '').replace(/,/g, '');
+
+  confirmAddBtn.textContent = 'Save';
+  deleteBtn.style.display = 'inline-block';
 }
+
+
 
 // --- Update summary panel ---
-function updateSummary(){
-    let subtotal=0;
-    document.querySelectorAll("#priceTable tbody tr").forEach(row=>{
-        const total=parseFloat(row.querySelector(".total-price").textContent)||0;
-        subtotal+=total;
-    });
-    const discount = Math.round(subtotal*0.02); // Example 2%
-    const totalAfterDiscount = subtotal-discount;
-    const dp = Math.round(totalAfterDiscount*0.4);
-    const remaining = totalAfterDiscount-dp;
+function updateSummary() {
+  let subtotal = 0;
 
-    document.getElementById("summary-subtotal").textContent="₱ "+subtotal;
-    document.getElementById("summary-adhesive").textContent="₱ 0";
-    document.getElementById("summary-discount").textContent="₱ "+discount;
-    document.getElementById("summary-total").textContent="₱ "+totalAfterDiscount;
-    document.getElementById("summary-dp").textContent="₱ "+dp;
-    document.getElementById("summary-balance").textContent="₱ "+remaining;
+  document.querySelectorAll('#itemTableBody tr').forEach(row => {
+    const priceCell = row.querySelector('.row-price');
+    if (priceCell) {
+      // Remove ₱ and commas, then convert to number
+      const price = parseFloat(priceCell.textContent.replace('₱','').replace(/,/g,'')) || 0;
+      subtotal += price;
+    }
+  });
+
+  const discount = Math.round(subtotal * 0.02); // example 2% discount
+  const totalAfterDiscount = subtotal - discount;
+  const dp = Math.round(totalAfterDiscount * 0.4);
+  const remaining = totalAfterDiscount - dp;
+
+  document.getElementById('summary-subtotal').textContent = "₱ " + subtotal.toLocaleString();
+  document.getElementById('summary-adhesive').textContent = "₱ 0";
+  document.getElementById('summary-discount').textContent = "₱ " + discount.toLocaleString();
+  document.getElementById('summary-total').textContent = "₱ " + totalAfterDiscount.toLocaleString();
+  document.getElementById('summary-dp').textContent = "₱ " + dp.toLocaleString();
+  document.getElementById('summary-balance').textContent = "₱ " + remaining.toLocaleString();
 }
 
-// --- Add new row ---
-function addRow(){
-    const table=document.querySelector("#priceTable tbody");
-    const newRow=document.createElement("tr");
-    newRow.innerHTML=`
-        <td><input type="text" class="word"></td>
-        <td>
-            <select class="height">
-                <option value="">Select</option>
-                <option>2</option><option>3</option><option>4</option><option>5</option>
-                <option>6</option><option>7</option><option>8</option><option>9</option>
-                <option>10</option><option>11</option><option>12</option>
-            </select>
-        </td>
-        <td>
-            <select class="thickness">
-                <option value="">Select</option>
-                <option>12</option><option>9</option><option>6</option><option>3</option>
-            </select>
-        </td>
-        <td>
-            <select class="location">
-                <option value="indoor">Indoor</option>
-                <option value="outdoor">Outdoor</option>
-            </select>
-        </td>
-        <td class="letters">0</td>
-        <td class="price-per-letter">0</td>
-        <td class="total total-price">0</td>
-    `;
-    table.appendChild(newRow);
-    attachEvents(newRow);
-    updateSummary();
-}
 
-// --- Attach input/change events ---
-function attachEvents(row){
-    row.querySelectorAll("input, select").forEach(el=>{
-        el.addEventListener("input",()=>updateRow(row));
-        el.addEventListener("change",()=>updateRow(row));
-    });
-}
-
-// Attach events to initial row
-document.querySelectorAll("#priceTable tbody tr").forEach(row=>attachEvents(row));
 
 // --- Drag & Drop Image Upload ---
 const dropZone = document.getElementById("dropZone");
@@ -133,3 +152,86 @@ function handleFiles(files){
     };
     reader.readAsDataURL(file);
 }
+
+// --- Fetching from google sheet ---
+const calculateBtn = document.getElementById('calculateBtn');
+
+let pricingTable = [];
+
+async function loadPricingTable() {
+  const response = await fetch(
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vSUdrhhZfDaFeIcTGi4uU8ImO2yyUMrAxu_Xn-9tBiFk0DC4AQzfRWjiuUJjoyFiN0XcDc4TyyPcGhf/pub?gid=0&single=true&output=csv'
+  );
+
+  const csv = await response.text();
+  const rows = csv.trim().split('\n').slice(1); // skip header
+
+  pricingTable = rows.map(row => {
+    const [height, thickness, location, price] = row.split(',');
+    return {
+      height: Number(height),
+      thickness: Number(thickness),
+      location: location.trim(),
+      price: Number(price)
+    };
+  });
+
+  console.log('Pricing table loaded:', pricingTable);
+}
+
+// Load once when page opens
+loadPricingTable();
+
+// Price lookup function
+function calculatePrice(height, thickness, location) {
+  const match = pricingTable.find(row =>
+    row.height === Number(height) &&
+    row.thickness === Number(thickness) &&
+    row.location.toLowerCase() === location.toLowerCase()
+  );
+
+  return match ? match.price : null;
+}
+
+function countCharacters(text) {
+  return text.replace(/\s/g, '').length;
+}
+
+
+// Price Calculation
+const calcInfo = document.getElementById('calcInfo');
+const charCountSpan = document.getElementById('charCount');
+const pricePerCharSpan = document.getElementById('pricePerChar');
+const calculatedPriceSpan = document.getElementById('calculatedPrice');
+
+calculateBtn.onclick = () => {
+  if (!itemName.value || !itemLocation.value || !itemHeight.value || !itemThickness.value) {
+    alert('Unfilled information in the form.');
+    return;
+  }
+
+  // Count characters
+  const chars = countCharacters(itemName.value);
+
+  // Get price per character based on the pricing catalog
+  const pricePerChar = calculatePrice( itemHeight.value,itemThickness.value,itemLocation.value );
+
+  if (pricePerChar === null) {
+    // No match found: alert, hide extra info, do NOT autofill price
+    alert('No pricing rule found for this combination of height, thickness, and location.');
+    calcInfo.style.display = 'none';
+    return;
+  }
+  const totalPrice = chars * pricePerChar;
+
+  // Update the read-only info
+  charCountSpan.textContent = chars;
+  pricePerCharSpan.textContent = pricePerChar;
+  calculatedPriceSpan.textContent = totalPrice;
+
+  // Reveal the block
+  calcInfo.style.display = 'block';
+
+  // Optionally auto-fill the Price input (still editable)
+  itemPrice.value = totalPrice;
+};

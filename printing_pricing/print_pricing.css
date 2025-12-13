@@ -21,48 +21,110 @@ h1 {
     color: #1d4ed8;
 }
 
-/* Table */
+
+
+/* ================= item order list ================= */
+* { box-sizing: border-box; font-family: Arial, sans-serif; }
+
+body {
+  margin: 0;
+  background: #f4f6f8;
+  padding: 30px;
+}
+
+h1 { margin-bottom: 16px; }
+
+.panel {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 1200px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+button {
+  border: none;
+  background: #2563eb;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover { background: #1e4fd6; }
+
+.cancel-btn { background: #64748b; }
+.cancel-btn:hover { background: #475569; }
+
+.delete-btn { background: #dc2626; }
+.delete-btn:hover { background: #b91c1c; }
+
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 25px;
+  width: 100%;
+  border-collapse: collapse;
 }
 
-th {
-    background: #bfdbfe;
-    padding: 12px;
-    text-align: left;
-    font-size: 15px;
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
 }
 
-td {
-    padding: 10px;
-    border-bottom: 1px solid #e5e7eb;
+tr:hover { background: #f8fafc; cursor: pointer; }
+
+th { background: #f1f5f9; }
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* VERY IMPORTANT */
 }
 
+
+.modal {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 360px;
+}
+
+.form-group { margin-bottom: 12px; }
+label { display: block; font-size: 13px; margin-bottom: 4px; }
 input, select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #cbd5e1;
-    border-radius: 6px;
-    font-size: 14px;
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
 }
 
-/* Buttons */
-.add-row {
-    margin-top: 20px;
-    background: #2563eb;
-    color: white;
-    border: none;
-    padding: 12px 18px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 16px;
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
 }
 
-.add-row:hover {
-    background: #1e40af;
+body.modal-open .container {
+  pointer-events: none;
+  user-select: none;
 }
+
+body.modal-open .modal-overlay {
+  pointer-events: auto;
+}
+
+
+
 
 /* Totals */
 .total {
@@ -117,6 +179,7 @@ input, select {
 
 .drop-zone {
     position: relative;
+    z-index: 1;
     border: 2px dashed #f59e0b;
     padding: 30px;
     border-radius: 12px;

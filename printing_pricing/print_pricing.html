@@ -9,52 +9,80 @@
 <body>
 
 <div class="container">
-    <h1>3D Printing Shop Pricing Calculator</h1>
+    <h1>3D Printing Shop Pricing</h1>
 
-    <!-- Top Table -->
-    <table id="priceTable">
-        <thead>
-            <tr>
-                <th>Word</th>
-                <th>Height (inches)</th>
-                <th>Thickness (mm)</th>
-                <th>Location</th>
-                <th>Letters in Word</th>
-                <th>Price per Letter (Php)</th>
-                <th>Total (Php)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><input type="text" class="word" title="Doesn't count white spaces."></td>
-                <td>
-                    <select class="height">
-                        <option value="">Select</option>
-                        <option>2</option><option>3</option><option>4</option><option>5</option>
-                        <option>6</option><option>7</option><option>8</option><option>9</option>
-                        <option>10</option><option>11</option><option>12</option>
-                    </select>
-                </td>
-                <td>
-                    <select class="thickness">
-                        <option value="">Select</option>
-                        <option>12</option><option>9</option><option>6</option><option>3</option>
-                    </select>
-                </td>
-                <td>
-                    <select class="location">
-                        <option value="indoor">Indoor</option>
-                        <option value="outdoor">Outdoor</option>
-                    </select>
-                </td>
-                <td class="letters">0</td>
-                <td class="price-per-letter">0</td>
-                <td class="total total-price">0</td>
-            </tr>
-        </tbody>
+  <div class="panel">
+    <div class="panel-header">
+      <strong>Item List</strong>
+      <button id="addItemBtn">+ Add Item</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Item Name</th>
+          <th>Height (in)</th>
+          <th>Thickness (mm)</th>
+          <th>Location</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody id="itemTableBody"></tbody>
     </table>
+  </div>
 
-    <button class="add-row" onclick="addRow()">Add Row</button>
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <h2>Add Item</h2>
+
+      <div class="form-group">
+        <label>Item Name</label>
+        <input type="text" id="itemName" />
+      </div>
+
+      <div class="form-group">
+        <label>Height (inches)</label>
+        <input type="number" id="itemHeight" />
+      </div>
+
+      <div class="form-group">
+        <label>Thickness (mm)</label>
+        <input type="number" id="itemThickness" />
+      </div>
+
+      <div class="form-group">
+        <label>Location</label>
+        <select id="itemLocation">
+          <option value="">Select location</option>
+          <option value="Indoor">Indoor</option>
+          <option value="Outdoor">Outdoor</option>
+        </select>
+      </div>
+
+     <div class="form-group" id="calcInfo"  style="display:none;">
+        <div>Characters in Item Name: <span id="charCount"></span></div>
+        <div>Price per Character ₱<span id="pricePerChar"></span></div>
+        <div class="total"><strong>Price:</strong> ₱<span id="calculatedPrice"></span></div>
+      </div>
+
+
+      <div class="form-group">
+        <label>Price</label>
+        <input type="number" id="itemPrice" />
+      </div>
+
+      <div class="modal-actions">
+        <button class="cancel-btn" id="cancelBtn">Cancel</button>
+        <button class="delete-btn" id="deleteBtn" style="display:none;">Delete</button>
+        <button id="confirmAddBtn">Add</button>
+        <button id="calculateBtn" class="secondary-btn">Calculate</button>
+
+      </div>
+    </div>
+  </div>
+
+
 
     <!-- Bottom Panels Wrapper -->
     <div class="bottom-panels">
